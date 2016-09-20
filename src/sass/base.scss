@@ -202,6 +202,25 @@ main {
 }
 
 /*===============================
+nav
+===============================*/
+.nav {
+  text-align: center;
+  margin: 24px;
+  .nav-items {
+    padding: 8px;
+    a {
+      display: block;
+      color: $accent-400;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+/*===============================
 footer
 ===============================*/
 footer {
