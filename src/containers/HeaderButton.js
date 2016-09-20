@@ -10,6 +10,9 @@ class HeaderButton extends Component {
     handleClick() {
         const toasts = document.getElementsByClassName('toast');
         toasts[0].classList.toggle('pop-in');
+        setTimeout(function() {
+            toasts[0].classList.toggle('pop-in');
+        }, 3000);
     }
 
     render() {
