@@ -1,0 +1,22 @@
+{
+  "name": "leancanvas",
+  "version": "0.1.0",
+  "description": "a lightweight web app to create Lean Canvas onine",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kenju/leancanvas.git"
+  },
+  "keywords": [
+    "Lean"
+  ],
+  "author": "kenju",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kenju/leancanvas/issues"
+  },
+  "homepage": "https://github.com/kenju/leancanvas#readme"
+}
