@@ -1,99 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>Lean Canvas Online</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="">
-	<meta name="keywords" content="">
-	<meta name="author" content="">
-	<link rel="shortcut icon" href="src/img/logo.png">
-	<link rel="stylesheet" href="src/stylesheets/base.min.css">
+    <meta charset="utf-8">
+    <title>Lean Canvas Online</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="src/img/logo.png">
+    <link rel="stylesheet" href="src/stylesheets/base.min.css">
 </head>
 <body>
 <header>
-	<h1>Lean Canvas Online</h1>
-	<div id="btn_save"><a href="#"><img src="src/img/check.svg" alt="save"></a></div>
+    <h1>Lean Canvas Online</h1>
+    <div id="btn_save"><a href="#"><img src="src/img/check.svg" alt="save"></a></div>
 </header>
 <div class="display-none" id="toast">
-	<p>Successfully Saved!</p>
+    <p>Successfully Saved!</p>
 </div>
 <main>
-	<div id="canvas">
-		<div class="canvas-box" id="canvas_problem_box">
-			<h2>Problem</h2>
-			<div class="canvas-item" id="canvas_problem" contenteditable="true"></div>
-		</div>
-		<div class="canvas-box" id="canvas_solution_box">
-			<h2>Solution</h2>
-			<div class="canvas-item" id="canvas_solution" contenteditable="true"></div>	
-		</div>
-		<div class="canvas-box" id="canvas_key_metrics_box">
-			<h2>Key Metrics</h2>
-			<div class="canvas-item" id="canvas_key_metrics" contenteditable="true"></div>			
-		</div>
-		<div class="canvas-box" id="canvas_uvp_box">
-			<h2>Unique Value Proposition</h2>
-			<div class="canvas-item" id="canvas_uvp" contenteditable="true"></div>		
-		</div>
-		<div class="canvas-box" id="canvas_unfair_advantage_box">
-			<h2>Unfair Advantage</h2>
-			<div class="canvas-item" id="canvas_unfair_advantage" contenteditable="true"></div>		
-		</div>
-		<div class="canvas-box" id="canvas_channels_box">
-			<h2>Channels</h2>
-			<div class="canvas-item" id="canvas_channels" contenteditable="true"></div>		
-		</div>
-		<div class="canvas-box" id="canvas_customer_segments_box">
-			<h2>Customer Segments</h2>
-			<div class="canvas-item" id="canvas_customer_segments" contenteditable="true"></div>
-		</div>
-		<div class="canvas-box" id="canvas_cost_box">
-			<h2>Cost Structure</h2>
-			<div class="canvas-item" id="canvas_cost" contenteditable="true"></div>
-		</div>
-		<div class="canvas-box" id="canvas_revenue_box">
-			<h2>Revenue Streams</h2>
-			<div class="canvas-item" id="canvas_revenue" contenteditable="true"></div>		
-		</div>
-	</div>
+    <div id="canvas">
+        <div class="canvas-box" id="canvas_problem_box">
+            <h2>Problem</h2>
+            <div class="canvas-item" id="canvas_problem" contenteditable="true"></div>
+        </div>
+        <div class="canvas-box" id="canvas_solution_box">
+            <h2>Solution</h2>
+            <div class="canvas-item" id="canvas_solution" contenteditable="true"></div>
+        </div>
+        <div class="canvas-box" id="canvas_key_metrics_box">
+            <h2>Key Metrics</h2>
+            <div class="canvas-item" id="canvas_key_metrics" contenteditable="true"></div>
+        </div>
+        <div class="canvas-box" id="canvas_uvp_box">
+            <h2>Unique Value Proposition</h2>
+            <div class="canvas-item" id="canvas_uvp" contenteditable="true"></div>
+        </div>
+        <div class="canvas-box" id="canvas_unfair_advantage_box">
+            <h2>Unfair Advantage</h2>
+            <div class="canvas-item" id="canvas_unfair_advantage" contenteditable="true"></div>
+        </div>
+        <div class="canvas-box" id="canvas_channels_box">
+            <h2>Channels</h2>
+            <div class="canvas-item" id="canvas_channels" contenteditable="true"></div>
+        </div>
+        <div class="canvas-box" id="canvas_customer_segments_box">
+            <h2>Customer Segments</h2>
+            <div class="canvas-item" id="canvas_customer_segments" contenteditable="true"></div>
+        </div>
+        <div class="canvas-box" id="canvas_cost_box">
+            <h2>Cost Structure</h2>
+            <div class="canvas-item" id="canvas_cost" contenteditable="true"></div>
+        </div>
+        <div class="canvas-box" id="canvas_revenue_box">
+            <h2>Revenue Streams</h2>
+            <div class="canvas-item" id="canvas_revenue" contenteditable="true"></div>
+        </div>
+    </div>
 </main>
-<div id="share_box">
-	<a href="https://twitter.com/share" class="twitter-share-button" data-via="kenju_wagatsuma" data-hashtags="leancanvas">Tweet</a>
-	<div class="fb-like" data-href="http://kenju.github.io/leancanvas/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
-	<a href="http://b.hatena.ne.jp/entry/http://kenju.github.io/leancanvas/" class="hatena-bookmark-button" data-hatena-bookmark-title="Lean Canvas Online" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-	<div class="g-plusone" data-annotation="inline" data-width="300" data-href="http://kenju.github.io/leancanvas/"></div>
-	<a class="tumblr-share-button" data-color="blue" data-notes="right" href="https://embed.tumblr.com/share"></a>
-	<span>
-	<script type="text/javascript" src="//media.line.me/js/line-button.js?v=20140411" ></script>
-	<script type="text/javascript">
-	new media_line_me.LineButton({"pc":false,"lang":"ja","type":"a"});
-	</script>
-	</span>
-</div>
 <footer>
-	<ul id="footer_ul">
-		<li><a href="http://github.io/KENJU/leancanvas">Github</a></li>
-		<li><a href="http://KENJU.github.io/">About</a></li>
-	</ul>
-	&copy; Copyright 2015- Kenju Wagatsuma
+    <ul id="footer_ul">
+        <li><a href="http://github.io/KENJU/leancanvas">Github</a></li>
+        <li><a href="http://KENJU.github.io/">About</a></li>
+    </ul>
+    &copy; Copyright 2015- Kenju Wagatsuma
 </footer>
 <script src="src/js/base.min.js"></script>
-<!-- twitter -->
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-<!-- facebook -->
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.3&appId=675887695863793";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<!-- google plus -->
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<!-- Tumblr -->
-<script>!function(d,s,id){var js,ajs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://secure.assets.tumblr.com/share-button.js";ajs.parentNode.insertBefore(js,ajs);}}(document, "script", "tumblr-js");</script>
-
 </body>
 </html>
