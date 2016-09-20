@@ -1,7 +1,5 @@
 # Lean Canvas Online
 
-<img src="img/screenshot.png" alt=""/>
-
 ## About
 
 > This is a lightweight web app to create Lean Canvas Online.
