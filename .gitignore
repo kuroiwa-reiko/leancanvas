@@ -10,7 +10,6 @@ Icon
 .Trashes
 
 # Linux
-
 .*
 !.gitignore
 *~
@@ -19,6 +18,11 @@ Icon
 .sass-cache/*
 
 # Grunt
-node_modules/
 build/
 dist/
+
+# Node.js
+node_modules/
+
+# Idea
+.idea/
