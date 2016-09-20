@@ -5,7 +5,7 @@
 import React from 'react';
 
 const Toast = () => (
-    <div className="display-none" id="toast">
+    <div className="toast">
         <p>Successfully Saved!</p>
     </div>
 );

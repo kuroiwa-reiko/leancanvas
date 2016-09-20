@@ -8,8 +8,8 @@ import checkImg from '../img/check.svg';
 class HeaderButton extends Component {
 
     handleClick() {
-        const toast = document.getElementById('toast');
-        toast.classList.remove("display-none");
+        const toasts = document.getElementsByClassName('toast');
+        toasts[0].classList.toggle('pop-in');
     }
 
     render() {
@@ -24,5 +24,7 @@ class HeaderButton extends Component {
         )
     }
 }
+
+
 
 export default HeaderButton;
