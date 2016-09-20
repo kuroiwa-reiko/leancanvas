@@ -4,13 +4,12 @@
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 @import "bourbon";
 @import "reset";
-@import url(http://fonts.googleapis.com/css?family=Roboto);
 
 /*===============================
 variables
 ===============================*/
 //font
-$body-font: 'Robot', Helvetica, arial, sans-serif !default;
+$body-font: Helvetica, arial, sans-serif !default;
 $font-size-base: 14px;
 $font-size-large: ceil(($font-size-base * 1.25));
 $font-size-small: ceil(($font-size-base * 0.85));
