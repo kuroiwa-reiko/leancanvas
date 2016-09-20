@@ -3,16 +3,12 @@
  */
 
 import React from 'react';
-import checkImg from '../img/check.svg';
+import HeaderButton from '../containers/HeaderButton'
 
 const Header = () => (
     <header>
         <h1>Lean Canvas Online</h1>
-        <div id="btn_save">
-            <a href="#">
-                <img src={checkImg} alt="save"/>
-            </a>
-        </div>
+        <HeaderButton/>
     </header>
 );
 

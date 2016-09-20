@@ -2,25 +2,43 @@
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
-@import "compass/reset";
-@import url(http://fonts.googleapis.com/css?family=Roboto);
+@import "bourbon";
+@import "reset";
 
 /*===============================
 variables
 ===============================*/
 //font
-$body-font: 'Robot', Helvetica, arial, sans-serif !default;
+$body-font: Helvetica, arial, sans-serif !default;
 $font-size-base: 14px;
 $font-size-large: ceil(($font-size-base * 1.25));
 $font-size-small: ceil(($font-size-base * 0.85));
+//toast
+$width: 300px;
 //color
 $blue-100: #bbdefb;
 $blue-500: #2196f3;
 $blue-700: #1976d2;
 $lime-100: #f0f4c3;
 $lime-400: #d4e157;
+$charcol: #323232;
 //box-shadow
 $box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+/*===============================
+mixin
+===============================*/
+@mixin depth-1 {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+@mixin border-radius($size) {
+  border-radius: $size;
+}
+
+@mixin base-transition {
+  @include transition(all 450ms cubic-bezier(0.23, 1, 0.32, 1));
+}
 
 /*===============================
 general
@@ -41,12 +59,19 @@ header
 header {
   background: $blue-500;
   color: white;
-  padding: 2rem;
-  font-size: $font-size-large;
+  padding: 0 1rem;
+  position: fixed;
+  height: 10vh;
   width: 100vw;
-  position: relative;
   box-shadow: $box-shadow;
+  z-index: 888;
   animation: slideinFromTop .6s both;
+  h1 {
+    font-size: $font-size-large;
+    position: absolute;
+    bottom: 0;
+    padding: 8px;
+  }
 }
 
 #btn_save {
@@ -89,8 +114,31 @@ header {
   }
 }
 
-#toast {
+.toast {
+  @include depth-1;
+  @include base-transition;
+  width: $width;
+  position: fixed;
+  z-index: 999;
+  bottom: 10px;
+  right: 10px;
+  display: block;
+  margin: 4px;
+  padding: 14px 24px;
+  font-size: 14px;
+  font-weight: 300;
+  background-color: $charcol;
+  color: lightgray;
+  border-radius: 2px;
+  text-align: left;
+  box-sizing: border-box;
+  transform: translateX($width) scaleX(0.6);
+  opacity: 0;
 
+  &.pop-in {
+    transform: translateX(0) scaleX(1);
+    opacity: 1;
+  }
 }
 
 .display-none {
@@ -100,6 +148,10 @@ header {
 /*===============================
 canvas
 ===============================*/
+main {
+  margin-top: 12vh;
+}
+
 #canvas {
   display: flex;
   display: -webkit-flex;
