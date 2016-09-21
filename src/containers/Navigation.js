@@ -7,6 +7,7 @@ import NavItems from './NavItems';
 
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 
 import {deepOrange500} from 'material-ui/styles/colors';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -22,7 +23,8 @@ const muiTheme = getMuiTheme({
 
 class Navigation extends React.Component {
     state = {
-        open: false
+        open: false,
+        histories: []
     };
 
     handleOpen = () => {
@@ -35,9 +37,57 @@ class Navigation extends React.Component {
 
     handleOnShowHistory = (histories) => {
         this.handleOpen();
-        Array.prototype.forEach.call(histories, history => {
-            console.log(history);
+        this.setState({histories: histories});
+    };
+
+    generateDialogBody = () => {
+        const histories = this.state.histories;
+        if (histories.length === 0) {
+            return 'No History';
+        }
+
+        let tbodyRowColumns = [];
+        Array.prototype.forEach.call(histories, (history, index) => {
+            const canvasObject = history.canvas;
+            tbodyRowColumns.push(
+                <TableRow key={history.timestamp}>
+                    <TableRowColumn>{index}</TableRowColumn>
+                    <TableRowColumn>{history.timestamp}</TableRowColumn>
+                    <TableRowColumn>{canvasObject.problem}</TableRowColumn>
+                    <TableRowColumn>{canvasObject.solution}</TableRowColumn>
+                    <TableRowColumn>{canvasObject.keyMetrics}</TableRowColumn>
+                    <TableRowColumn>{canvasObject.uvp}</TableRowColumn>
+                    <TableRowColumn>{canvasObject.unfairAdvantage}</TableRowColumn>
+                    <TableRowColumn>{canvasObject.channels}</TableRowColumn>
+                    <TableRowColumn>{canvasObject.customerSegments}</TableRowColumn>
+                    <TableRowColumn>{canvasObject.costStructure}</TableRowColumn>
+                    <TableRowColumn>{canvasObject.revenueStreams}</TableRowColumn>
+                </TableRow>
+            );
         });
+
+        const table = <Table>
+            <TableHeader>
+                <TableRow>
+                    <TableHeaderColumn>Version</TableHeaderColumn>
+                    <TableHeaderColumn>Timestamp</TableHeaderColumn>
+                    <TableHeaderColumn>Problem</TableHeaderColumn>
+                    <TableHeaderColumn>Solution</TableHeaderColumn>
+                    <TableHeaderColumn>Key Metrics</TableHeaderColumn>
+                    <TableHeaderColumn>Unique Value Proposition</TableHeaderColumn>
+                    <TableHeaderColumn>Unfair Advantage</TableHeaderColumn>
+                    <TableHeaderColumn>Channels</TableHeaderColumn>
+                    <TableHeaderColumn>Customer Segments</TableHeaderColumn>
+                    <TableHeaderColumn>Cost Structure</TableHeaderColumn>
+                    <TableHeaderColumn>Revenue Streams</TableHeaderColumn>
+                </TableRow>
+            </TableHeader>
+            <TableBody>
+                {tbodyRowColumns}
+            </TableBody>
+        </Table>;
+
+        return table;
     };
 
     render() {
@@ -62,7 +112,7 @@ class Navigation extends React.Component {
                         open={this.state.open}
                         onRequestClose={this.handleClose}
                     >
-                        Sample
+                        {this.generateDialogBody()}
                     </Dialog>
                 </div>
             </MuiThemeProvider>
