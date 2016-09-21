@@ -9,8 +9,8 @@ const App = () => (
     <div>
         <Header/>
         <Toast/>
-        <Main/>
         <NavItems/>
+        <Main/>
         <Footer/>
     </div>
 );
