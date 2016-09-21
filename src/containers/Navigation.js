@@ -47,7 +47,7 @@ class Navigation extends React.Component {
         }
 
         const style = {
-            'vertical-align': 'middle'
+            verticalAlign: 'middle'
         };
         return (
             <Table>
