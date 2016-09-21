@@ -3,31 +3,37 @@
  */
 
 import React, {Component} from 'react';
+import IndexedDBAdapter from '../js/IndexedDBAdapter';
 import checkImg from '../img/check.svg';
 
-//TODO
-import IndexedDBAdapter from '../js/IndexedDBAdapter';
-const item = {
-    problem: 'SAMPLE problem',
-    solution: 'SAMPLE solution',
-    keyMetrics: 'SAMPLE key metrics',
-    uvp: 'SAMPLE uvp',
-    unfairAdvantage: 'SAMPLE unfair advantages',
-    channels: 'SAMPLE channels',
-    customerSegments: 'SAMPLE customer segments',
-    costStructure: 'SAMPLE cost structure',
-    revenueStreams: 'SAMPLE revenue streams'
+const showToast = () => {
+    const toasts = document.getElementsByClassName('toast');
+    toasts[0].classList.toggle('pop-in');
+    setTimeout(function () {
+        toasts[0].classList.toggle('pop-in');
+    }, 3000);
 };
-IndexedDBAdapter.pushItem(item);
+
+const saveCanvasHistory = () => {
+    const item = {
+        problem: document.getElementById('canvas_problem').innerText,
+        solution: document.getElementById('canvas_solution').innerText,
+        keyMetrics: document.getElementById('canvas_key_metrics').innerText,
+        uvp: document.getElementById('canvas_uvp').innerText,
+        unfairAdvantage: document.getElementById('canvas_unfair_advantage').innerText,
+        channels: document.getElementById('canvas_channels').innerText,
+        customerSegments: document.getElementById('canvas_customer_segments').innerText,
+        costStructure: document.getElementById('canvas_cost').innerText,
+        revenueStreams: document.getElementById('canvas_revenue').innerText
+    };
+    IndexedDBAdapter.pushItem(item);
+};
 
 class HeaderButton extends Component {
 
     handleClick() {
-        const toasts = document.getElementsByClassName('toast');
-        toasts[0].classList.toggle('pop-in');
-        setTimeout(function() {
-            toasts[0].classList.toggle('pop-in');
-        }, 3000);
+        showToast();
+        saveCanvasHistory();
     }
 
     render() {
@@ -42,7 +48,6 @@ class HeaderButton extends Component {
         )
     }
 }
-
 
 
 export default HeaderButton;

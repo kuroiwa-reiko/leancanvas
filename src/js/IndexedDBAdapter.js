@@ -10,7 +10,6 @@ class IndexedDBAdapter {
             if (!indexedDB) {
                 reject('This browser does not support IndexedDB API');
             }
-
             const DB_NAME = 'LeanCanvasOnline';
             const DB_VERSION = 3;
             const DBOpenRequest = indexedDB.open(DB_NAME, DB_VERSION);
@@ -18,48 +17,27 @@ class IndexedDBAdapter {
             DBOpenRequest.onerror = (event) => {
                 reject(event);
             };
-
             DBOpenRequest.onsuccess = (event) => {
                 const db = event.target.result;
                 resolve(db);
             };
-
             DBOpenRequest.onupgradeneeded = (event) => {
                 const db = event.target.result;
-
-                const objectStore = db.createObjectStore('canvases', {autoIncrement: true});
-                const testData = {
-                    timestamp: new Date().getTime(),
-                    canvas: {
-                        problem: 'sample problem',
-                        solution: 'sample solution',
-                        keyMetrics: 'sample key metrics',
-                        uvp: 'sample uvp',
-                        unfairAdvantage: 'sample unfair advantages',
-                        channels: 'sample channels',
-                        customerSegments: 'sample customer segments',
-                        costStructure: 'sample cost structure',
-                        revenueStreams: 'sample revenue streams'
-                    }
-                };
-                objectStore.add(testData);
-
+                db.createObjectStore('canvases', {autoIncrement: true});
                 resolve(db);
             };
         });
     }
 
-    static _openTransaction() {
+    static _openTransaction(storeNames) {
         return this._requestDb()
             .then(db => {
-                const transaction = db.transaction(['canvases'], 'readwrite');
+                const transaction = db.transaction(storeNames, 'readwrite');
                 transaction.oncomplete = (event) => {
                     console.log('transaction oncomplete');
-                    console.log(event);
                 };
                 transaction.onerror = (event) => {
-                    console.log('transaction onerror');
-                    console.error(event);
+                    return Promise.reject('transaction onerror');
                 };
                 return Promise.resolve(transaction);
             })
@@ -69,7 +47,7 @@ class IndexedDBAdapter {
     }
 
     static _getObjectStore(storeName) {
-        return this._openTransaction()
+        return this._openTransaction([storeName])
             .then(transaction => {
                 const objectStore = transaction.objectStore(storeName);
                 return Promise.resolve(objectStore);
@@ -80,25 +58,46 @@ class IndexedDBAdapter {
     }
 
     static pushItem(item) {
-        this._getObjectStore('canvases')
+        return this._getObjectStore('canvases')
             .then(objectStore => {
-                const testData = {
+                const canvasItem = {
                     timestamp: new Date().getTime(),
                     canvas: item
                 };
-                objectStore.add(testData);
+                objectStore.add(canvasItem);
             })
             .catch(err => {
-                console.error(err);
+                return Promise.reject(err);
             });
     };
 
-    static getItem(key) {
-
-    };
+    static getAll() {
+        return this._getObjectStore('canvases')
+            .then(objectStore => {
+                const items = [];
+                objectStore.openCursor().onsuccess = (event) => {
+                    const cursor = event.target.result;
+                    if (cursor) {
+                        items.push(cursor.value);
+                        cursor.continue();
+                    }
+                };
+                return Promise.resolve(items);
+            })
+            .catch(err => {
+                return Promise.reject(err);
+            });
+    }
 
     static clear() {
-
+        return this._getObjectStore('canvases')
+            .then(objectStore => {
+                objectStore.clear();
+                return Promise.resolve('Successfully cleared history.');
+            })
+            .catch(err => {
+                return Promise.reject(err);
+            });
     };
 
 }
