@@ -30,7 +30,7 @@ class NavItems extends Component {
         //TODO: show modal
         IndexedDBAdapter.getAll()
             .then(history => {
-                console.log(history);
+                this.props.onShowHistory(history);
             })
             .catch(err => {
                 // TODO: maybe show error toast
