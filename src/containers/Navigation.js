@@ -46,48 +46,50 @@ class Navigation extends React.Component {
             return 'No History';
         }
 
-        let tbodyRowColumns = [];
-        Array.prototype.forEach.call(histories, (history, index) => {
-            const canvasObject = history.canvas;
-            tbodyRowColumns.push(
-                <TableRow key={history.timestamp}>
-                    <TableRowColumn>{index}</TableRowColumn>
-                    <TableRowColumn>{history.timestamp}</TableRowColumn>
-                    <TableRowColumn>{canvasObject.problem}</TableRowColumn>
-                    <TableRowColumn>{canvasObject.solution}</TableRowColumn>
-                    <TableRowColumn>{canvasObject.keyMetrics}</TableRowColumn>
-                    <TableRowColumn>{canvasObject.uvp}</TableRowColumn>
-                    <TableRowColumn>{canvasObject.unfairAdvantage}</TableRowColumn>
-                    <TableRowColumn>{canvasObject.channels}</TableRowColumn>
-                    <TableRowColumn>{canvasObject.customerSegments}</TableRowColumn>
-                    <TableRowColumn>{canvasObject.costStructure}</TableRowColumn>
-                    <TableRowColumn>{canvasObject.revenueStreams}</TableRowColumn>
-                </TableRow>
-            );
-        });
-
-        const table = <Table>
-            <TableHeader>
-                <TableRow>
-                    <TableHeaderColumn>Version</TableHeaderColumn>
-                    <TableHeaderColumn>Timestamp</TableHeaderColumn>
-                    <TableHeaderColumn>Problem</TableHeaderColumn>
-                    <TableHeaderColumn>Solution</TableHeaderColumn>
-                    <TableHeaderColumn>Key Metrics</TableHeaderColumn>
-                    <TableHeaderColumn>Unique Value Proposition</TableHeaderColumn>
-                    <TableHeaderColumn>Unfair Advantage</TableHeaderColumn>
-                    <TableHeaderColumn>Channels</TableHeaderColumn>
-                    <TableHeaderColumn>Customer Segments</TableHeaderColumn>
-                    <TableHeaderColumn>Cost Structure</TableHeaderColumn>
-                    <TableHeaderColumn>Revenue Streams</TableHeaderColumn>
-                </TableRow>
-            </TableHeader>
-            <TableBody>
-                {tbodyRowColumns}
-            </TableBody>
-        </Table>;
-
-        return table;
+        const style = {
+            'vertical-align': 'middle'
+        };
+        return (
+            <Table>
+                <TableHeader
+                    displaySelectAll={false}
+                    adjustForCheckbox={false}>
+                    <TableRow>
+                        <TableHeaderColumn style={style}>Version</TableHeaderColumn>
+                        <TableHeaderColumn style={style}>Timestamp</TableHeaderColumn>
+                        <TableHeaderColumn style={style}>Problem</TableHeaderColumn>
+                        <TableHeaderColumn style={style}>Solution</TableHeaderColumn>
+                        <TableHeaderColumn style={style}>Key Metrics</TableHeaderColumn>
+                        <TableHeaderColumn style={style}>Unique Value Proposition</TableHeaderColumn>
+                        <TableHeaderColumn style={style}>Unfair Advantage</TableHeaderColumn>
+                        <TableHeaderColumn style={style}>Channels</TableHeaderColumn>
+                        <TableHeaderColumn style={style}>Customer Segments</TableHeaderColumn>
+                        <TableHeaderColumn style={style}>Cost Structure</TableHeaderColumn>
+                        <TableHeaderColumn style={style}>Revenue Streams</TableHeaderColumn>
+                    </TableRow>
+                </TableHeader>
+                <TableBody
+                    displayRowCheckbox={false}>
+                    {
+                        histories.map((history, index) => (
+                            <TableRow key={history.timestamp}>
+                                <TableRowColumn style={style}>{index}</TableRowColumn>
+                                <TableRowColumn style={style}>{history.timestamp}</TableRowColumn>
+                                <TableRowColumn style={style}>{history.canvas.problem}</TableRowColumn>
+                                <TableRowColumn style={style}>{history.canvas.solution}</TableRowColumn>
+                                <TableRowColumn style={style}>{history.canvas.keyMetrics}</TableRowColumn>
+                                <TableRowColumn style={style}>{history.canvas.uvp}</TableRowColumn>
+                                <TableRowColumn style={style}>{history.canvas.unfairAdvantage}</TableRowColumn>
+                                <TableRowColumn style={style}>{history.canvas.channels}</TableRowColumn>
+                                <TableRowColumn style={style}>{history.canvas.customerSegments}</TableRowColumn>
+                                <TableRowColumn style={style}>{history.canvas.costStructure}</TableRowColumn>
+                                <TableRowColumn style={style}>{history.canvas.revenueStreams}</TableRowColumn>
+                            </TableRow>
+                        ))
+                    }
+                </TableBody>
+            </Table>
+        );
     };
 
     render() {
