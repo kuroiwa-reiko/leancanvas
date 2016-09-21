@@ -7,7 +7,18 @@ import checkImg from '../img/check.svg';
 
 //TODO
 import IndexedDBAdapter from '../js/IndexedDBAdapter';
-IndexedDBAdapter.open();
+const item = {
+    problem: 'SAMPLE problem',
+    solution: 'SAMPLE solution',
+    keyMetrics: 'SAMPLE key metrics',
+    uvp: 'SAMPLE uvp',
+    unfairAdvantage: 'SAMPLE unfair advantages',
+    channels: 'SAMPLE channels',
+    customerSegments: 'SAMPLE customer segments',
+    costStructure: 'SAMPLE cost structure',
+    revenueStreams: 'SAMPLE revenue streams'
+};
+IndexedDBAdapter.pushItem(item);
 
 class HeaderButton extends Component {
 
