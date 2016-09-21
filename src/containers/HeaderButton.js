@@ -5,6 +5,10 @@
 import React, {Component} from 'react';
 import checkImg from '../img/check.svg';
 
+//TODO
+import IndexedDBAdapter from '../js/IndexedDBAdapter';
+IndexedDBAdapter.open();
+
 class HeaderButton extends Component {
 
     handleClick() {
