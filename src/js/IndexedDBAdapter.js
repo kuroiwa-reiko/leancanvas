@@ -72,22 +72,34 @@ class IndexedDBAdapter {
     };
 
     static getAll() {
-        return this._getObjectStore('canvases')
-            .then(objectStore => {
-                const items = [];
-                objectStore.openCursor().onsuccess = (event) => {
-                    const cursor = event.target.result;
-                    if (cursor) {
-                        items.push(cursor.value);
-                        cursor.continue();
-                    }
-                };
-                return Promise.resolve(items);
-            })
-            .catch(err => {
-                return Promise.reject(err);
-            });
-    }
+        return new Promise((resolve, reject) => {
+            this._requestDb()
+                .then(db => {
+                    let items = [];
+                    const transaction = db.transaction(['canvases'], 'readwrite');
+
+                    const objectStore = transaction.objectStore('canvases');
+                    const request = objectStore.openCursor();
+                    request.onsuccess = (event) => {
+                        const cursor = event.target.result;
+                        if (cursor) {
+                            items.push(cursor.value);
+                            cursor.continue();
+                        }
+                    };
+
+                    transaction.oncomplete = () => {
+                        resolve(items);
+                    };
+                    transaction.onerror = () => {
+                        reject('transaction onerror');
+                    };
+                })
+                .catch(err => {
+                    return Promise.reject(err);
+                });
+        })
+    };
 
     static clear() {
         return this._getObjectStore('canvases')

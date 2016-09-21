@@ -33,9 +33,11 @@ class Navigation extends React.Component {
         this.setState({open: false});
     };
 
-    handleOnShowHistory = (history) => {
+    handleOnShowHistory = (histories) => {
         this.handleOpen();
-        this.setState({history:history});
+        Array.prototype.forEach.call(histories, history => {
+            console.log(history);
+        });
     };
 
     render() {
