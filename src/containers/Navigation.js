@@ -12,8 +12,6 @@ import FlatButton from 'material-ui/FlatButton';
 import {deepOrange500} from 'material-ui/styles/colors';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-injectTapEventPlugin();
 
 const muiTheme = getMuiTheme({
     palette: {
@@ -43,9 +41,8 @@ class Navigation extends React.Component {
     handleApply = () => {
         const selectedRows = this.state.selectedRows;
         if (selectedRows.length > 0) {
-            // TODO: update canvas
-            const history = this.state.histories[selectedRows[0]];
-            console.log(history);
+            const selectedHistory = this.state.histories[selectedRows[0]];
+            this.props.onDialogApply(selectedHistory);
         }
         this.setState({
             open: false,
@@ -70,7 +67,6 @@ class Navigation extends React.Component {
                 onTouchTap={this.handleApply}
             />
         ];
-
         return (
             <MuiThemeProvider muiTheme={muiTheme}>
                 <div>
@@ -95,6 +91,5 @@ class Navigation extends React.Component {
         );
     }
 }
-
 
 export default Navigation;
