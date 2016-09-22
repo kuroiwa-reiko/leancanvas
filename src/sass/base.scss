@@ -230,6 +230,20 @@ main {
 }
 
 /*===============================
+dialog
+===============================*/
+.show-history-dialog-table-row {
+  th:first-child {
+    div {
+      visibility: hidden;
+    }
+  }
+  td:first-child {
+    vertical-align: middle;
+  }
+}
+
+/*===============================
 footer
 ===============================*/
 footer {

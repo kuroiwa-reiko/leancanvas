@@ -21,6 +21,17 @@ const muiTheme = getMuiTheme({
     },
 });
 
+const dateFromTimestamp = (unix_timestamp) => {
+    const date = new Date(unix_timestamp);
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDay();
+    const hours = date.getHours();
+    const minutes = '0' + date.getMinutes();
+    const seconds = '0' + date.getSeconds();
+    return year + '/' + month + '/' + day + ' ' + hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+};
+
 class Navigation extends React.Component {
     state = {
         open: false,
@@ -32,6 +43,12 @@ class Navigation extends React.Component {
     };
 
     handleClose = () => {
+        this.setState({open: false});
+    };
+
+    handleApply = () => {
+        // if nothing is selected, simply close
+        // if a new row is selected, update view
         this.setState({open: false});
     };
 
@@ -52,38 +69,22 @@ class Navigation extends React.Component {
         return (
             <Table>
                 <TableHeader
-                    displaySelectAll={false}
+                    displaySelectAll={true}
                     adjustForCheckbox={false}>
-                    <TableRow>
+                    <TableRow className='show-history-dialog-table-row'>
                         <TableHeaderColumn style={style}>Version</TableHeaderColumn>
-                        <TableHeaderColumn style={style}>Timestamp</TableHeaderColumn>
+                        <TableHeaderColumn style={style}>Created At</TableHeaderColumn>
                         <TableHeaderColumn style={style}>Problem</TableHeaderColumn>
-                        <TableHeaderColumn style={style}>Solution</TableHeaderColumn>
-                        <TableHeaderColumn style={style}>Key Metrics</TableHeaderColumn>
-                        <TableHeaderColumn style={style}>Unique Value Proposition</TableHeaderColumn>
-                        <TableHeaderColumn style={style}>Unfair Advantage</TableHeaderColumn>
-                        <TableHeaderColumn style={style}>Channels</TableHeaderColumn>
-                        <TableHeaderColumn style={style}>Customer Segments</TableHeaderColumn>
-                        <TableHeaderColumn style={style}>Cost Structure</TableHeaderColumn>
-                        <TableHeaderColumn style={style}>Revenue Streams</TableHeaderColumn>
                     </TableRow>
                 </TableHeader>
                 <TableBody
-                    displayRowCheckbox={false}>
+                    displayRowCheckbox={true}>
                     {
                         histories.map((history, index) => (
-                            <TableRow key={history.timestamp}>
+                            <TableRow className='show-history-dialog-table-row' key={history.timestamp}>
                                 <TableRowColumn style={style}>{index}</TableRowColumn>
-                                <TableRowColumn style={style}>{history.timestamp}</TableRowColumn>
+                                <TableRowColumn style={style}>{dateFromTimestamp(history.timestamp)}</TableRowColumn>
                                 <TableRowColumn style={style}>{history.canvas.problem}</TableRowColumn>
-                                <TableRowColumn style={style}>{history.canvas.solution}</TableRowColumn>
-                                <TableRowColumn style={style}>{history.canvas.keyMetrics}</TableRowColumn>
-                                <TableRowColumn style={style}>{history.canvas.uvp}</TableRowColumn>
-                                <TableRowColumn style={style}>{history.canvas.unfairAdvantage}</TableRowColumn>
-                                <TableRowColumn style={style}>{history.canvas.channels}</TableRowColumn>
-                                <TableRowColumn style={style}>{history.canvas.customerSegments}</TableRowColumn>
-                                <TableRowColumn style={style}>{history.canvas.costStructure}</TableRowColumn>
-                                <TableRowColumn style={style}>{history.canvas.revenueStreams}</TableRowColumn>
                             </TableRow>
                         ))
                     }
@@ -96,8 +97,12 @@ class Navigation extends React.Component {
         const actions = [
             <FlatButton
                 label="Close"
-                primary={true}
                 onTouchTap={this.handleClose}
+            />,
+            <FlatButton
+                label="Apply"
+                primary={true}
+                onTouchTap={this.handleApply}
             />
         ];
 
