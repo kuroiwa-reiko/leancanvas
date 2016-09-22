@@ -33,7 +33,9 @@ class CanvasBox extends Component {
                      id={this.props.id}
                      contentEditable={true}
                      onBlur={this.handleOnBlur}
-                ></div>
+                >
+                    {this.props.content}
+                </div>
             </div>
         )
     }

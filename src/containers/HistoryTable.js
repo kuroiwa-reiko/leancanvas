@@ -16,8 +16,12 @@ class HistoryTable extends React.Component {
 
     render() {
         const histories = this.props.histories;
-        if (histories.length === 0) {
-            return 'No History';
+        if (histories === null || histories.length === 0) {
+            return (
+                <p>
+                    No History
+                </p>
+            );
         }
         const style = {
             verticalAlign: 'middle'
@@ -43,7 +47,8 @@ class HistoryTable extends React.Component {
                                 selected={this.props.selectedRows.indexOf(index) !== -1}
                                 className='show-history-dialog-table-row' key={history.timestamp}>
                                 <TableRowColumn style={style}>{index}</TableRowColumn>
-                                <TableRowColumn style={style}>{HistoryTable.dateFromTimestamp(history.timestamp)}</TableRowColumn>
+                                <TableRowColumn
+                                    style={style}>{HistoryTable.dateFromTimestamp(history.timestamp)}</TableRowColumn>
                                 <TableRowColumn style={style}>{history.canvas.problem}</TableRowColumn>
                             </TableRow>
                         ))
