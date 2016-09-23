@@ -5,7 +5,7 @@
 class ServiceWorkerAdapter {
     register() {
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('./service-worker.js', {scope: '/'})
+            navigator.serviceWorker.register('/leancanvas/service-worker.js', {scope: '/leancanvas'})
                 .then((registration) => {
                     console.log('ServiceWorker registration successful with scope: ', registration.scope);
                 })
