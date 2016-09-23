@@ -1,0 +1,26 @@
+{
+  "short_name": "LeanCanvas",
+  "name": "Progressive Lean Canvas Online",
+  "icons": [
+    {
+      "src": "launcher/launcher-icon-1x.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "launcher/launcher-icon-2x.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "launcher/launcher-icon-4x.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "index.html",
+  "background_color": "#EEEEEE",
+  "theme-color": "#303F9F",
+  "display": "browser",
+  "orientation": "portrait"
+}
