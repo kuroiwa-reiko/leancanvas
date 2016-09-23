@@ -8,6 +8,10 @@ import Footer from './Footer';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
+import ServiceWorkerAdapter from '../js/ServiceWorkerAdapter';
+const swAdapter = new ServiceWorkerAdapter();
+swAdapter.register();
+
 class App extends React.Component {
 
     constructor() {
